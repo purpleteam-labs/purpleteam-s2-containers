@@ -1,3 +1,15 @@
-# purpleteam-app-slave
+<div align="center">
+  <br/>
+  <a href="https://purpleteam-labs.com" title="purpleteam">
+    <img width=900px src="https://gitlab.com/purpleteam-labs/purpleteam/raw/master/assets/images/purpleteam-banner.png" alt="purpleteam logo">
+  </a>
+  <br/>
+<br/>
+<h2>purpleteam application slave</h2><br/>
+  Currently in heavy development
+<br/><br/>
 
-application slave driven by application tester
+
+<br/><br/><br/>
+</div>
+
