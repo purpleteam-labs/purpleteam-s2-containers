@@ -1,0 +1,31 @@
+# docker-compose up --scale zap=2
+version: "3.7"
+
+networks:
+  compose_pt-net:
+    external: true
+
+services:
+  zap:
+    image: owasp/zap2docker-stable
+    networks:
+      compose_pt-net:
+    # Soft limit of 12 test sessions.
+    ports:
+    - "8080-8092:8080"
+    # Todo: KC: create new api key on every test run.
+    command: [
+      "zap.sh",
+      "-daemon",
+      "-port",
+      "8080",
+      "-host",
+      "0.0.0.0",
+      "-config",
+      "api.addrs.addr.regex=true",
+      "-config",
+      "api.addrs.addr.name=zap|localhost|127.0.0.1|172.25.0.*",
+      "-config",
+      "api.key=${API_KEY}"
+    ]
+    
