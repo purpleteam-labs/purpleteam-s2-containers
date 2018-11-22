@@ -1,5 +1,5 @@
 # docker-compose up --scale zap=2
-version: "3.7"
+version: "3.6"
 
 networks:
   compose_pt-net:

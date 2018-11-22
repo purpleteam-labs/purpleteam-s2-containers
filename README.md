@@ -5,7 +5,7 @@
   </a>
   <br/>
 <br/>
-<h2>purpleteam application slave</h2><br/>
+<h2>purpleteam slaves</h2><br/>
   Currently in heavy development
 <br/><br/>
 
