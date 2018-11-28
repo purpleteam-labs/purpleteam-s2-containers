@@ -1,0 +1,34 @@
+version: "3.6"
+
+networks:
+  compose_pt-net:
+    external: true
+
+services:
+  selenium-hub:
+    image: selenium/hub:3.141.59-bismuth
+    container_name: selenium-hub
+    networks:
+      compose_pt-net:
+    ports:
+      - "4444:4444"
+  chrome:
+    image: selenium/node-chrome:3.141.59-bismuth
+    networks:
+      compose_pt-net:
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+    shm_size: 1G
+  firefox:
+    image: selenium/node-firefox:3.141.59-bismuth
+    networks:
+      compose_pt-net:
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+    shm_size: 1G
