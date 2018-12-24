@@ -12,7 +12,7 @@ services:
       compose_pt-net:
     # Soft limit of 12 test sessions.
     ports:
-    - "8080-8092:8080"
+    - "8080-8091:8080"
     # Todo: KC: create new api key on every test run.
     command: [
       "zap.sh",
