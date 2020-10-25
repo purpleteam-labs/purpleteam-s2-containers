@@ -24,8 +24,14 @@ services:
       "-config",
       "api.addrs.addr.regex=true",
       "-config",
-      "api.addrs.addr.name=zap|localhost|127.0.0.1|172.25.0.*|appslave-zap_(100|[1-9][0-9]?)",
+      "api.addrs.addr.name=zap|localhost|127.0.0.1|172.25.0.*|appslave_zap_(100|[1-9][0-9]?)",
       "-config",
       "api.key=${ZAP_API_KEY}"
     ]
-    
+    # Uncomment the bind mount to enable debug logs in Zap containers.
+    #volumes:
+    # - type: bind
+    #   # Same variables found in contOrc IAC variables.tf for cloud environment.
+    #   source: ${HOST_ZAP_LOG4J_PROPERTIES_PATH}
+    #   target: ${ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET}
+
