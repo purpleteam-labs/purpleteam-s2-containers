@@ -13,16 +13,31 @@ services:
   #  ports:
   #    - "4444:4444"
   chrome:
+    # Use the -debug image instead if you want to VNC into the container and view the browser.
+    # https://github.com/SeleniumHQ/docker-selenium#debugging
+    #image: selenium/standalone-chrome-debug
     image: selenium/standalone-chrome
     networks:
       compose_pt-net:
     ports:
       - "4444-4455:4444"
+      - "5900-5901:5900"
     shm_size: 1G
+    # Uncomment the SE_OPTS env var to enable debug logs in Selenium containers.
+    #environment:
+    #  - SE_OPTS=-debug
   firefox:
+    # Use the -debug image instead if you want to VNC into the container and view the browser.
+    # https://github.com/SeleniumHQ/docker-selenium#debugging
+    #image: selenium/standalone-firefox-debug
     image: selenium/standalone-firefox
     networks:
       compose_pt-net:
     ports:
       - "4444-4455:4444"
+      - "5900-5901:5900"
     shm_size: 1G
+    # Uncomment the SE_OPTS env var to enable debug logs in Selenium containers.
+    #environment:
+    #  - SE_OPTS=-debug
+
