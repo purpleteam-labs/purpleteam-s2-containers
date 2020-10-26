@@ -48,7 +48,7 @@ ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET=/home/zap/.ZAP/log4j.properties
 
 # Debugging
 
-## app-slave
+## app-slave (Zap)
 
 ### Debug logging
 
@@ -57,6 +57,26 @@ Providing you have established the environment variables discussed above:
 In order to turn on debug logging for the app-slave (Zap) containers that run in the `local` environment, uncomment the `volumes` array and the element containing `source` key with environment variable `HOST_ZAP_LOG4J_PROPERTIES_PATH`.
 
 Details [below](#redirecting-and-viewing-container-logs) for actually viewing the logs.
+
+### Interacting with Zap
+
+You can interact with Zap (query the Zap UI) while your tests are running. We've found it useful in the past to check the state of Zap while debugging the app-scanner.
+
+1. Confirm that the appslave_zap_[n] container is running with:  
+   ```shell
+   docker stats
+   ```
+2. Check which host port the appslave_zap_[n] container is bound to with:  
+   ```shell
+   docker container ls
+   ```
+   This could be any port between `8080-8091` inclusive, as defined in the docker-compose.yml.  
+   The port that Zap inside the container is listening on will always be 8080
+3. In your browser using FoxyProxy set-up a proxy to localhost:[zap-host-port]  
+   Optional: set-up the following URL Pattern in FoxyProxy: `zap:8080/*`  
+   If you use the URL Pattern it will allow you to leave FoxyProxy on, selecting "_Use proxies based on their predefined patterns and priorities_". Failing that you can just select the specific proxy you have created
+4. Browse to `http://zap:8080/`  
+   Your requests will be proxied through your host port and responded to via `zap`
 
 ## selenium-standalone
 
