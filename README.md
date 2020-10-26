@@ -76,7 +76,7 @@ You can interact with Zap (query the Zap UI) while your tests are running. We've
    Optional: set-up the following URL Pattern in FoxyProxy: `zap:8080/*`  
    If you use the URL Pattern it will allow you to leave FoxyProxy on, selecting "_Use proxies based on their predefined patterns and priorities_". Failing that you can just select the specific proxy you have created
 4. Browse to `http://zap:8080/`  
-   Your requests will be proxied through your host port and responded to via `zap`
+   Your requests will be proxied through your host port and responded to via the `zap` process in the container specified by host port in your FoxyProxy configuration
 
 ## selenium-standalone
 
