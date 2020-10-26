@@ -17,6 +17,8 @@ These containers are started dynamically based on Build User config (Job) input 
 
 The following configurations are relevant if you are intending on running the purpleteam back-end in the `local` environment. In the `cloud` this is all done for you.
 
+Clone this repository.
+
 # Define the environment variables
 
 ## app-slave (Zap)
