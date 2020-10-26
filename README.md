@@ -60,7 +60,7 @@ Details [below](#redirecting-and-viewing-container-logs) for actually viewing th
 
 ### Interacting with Zap
 
-You can interact with Zap (query the Zap UI) while your tests are running. We've found it useful in the past to check the state of Zap while debugging the app-scanner.
+You can interact with Zap (query the Zap UI) while your tests are running. We've found this useful in the past to check the state of Zap while debugging the app-scanner.
 
 1. Confirm that the appslave_zap_[n] container is running with:  
    ```shell
