@@ -78,24 +78,24 @@ The following outlines what you will need to do in order to view the browser ins
 3. Create new entries. If you intend to VNC into a couple of Selenium containers concurrently, you could set each one up like the following:  
   
   | Key  | Value                       |
-|------|-----------------------------|
-| Name | seleniumstandalone_chrome_1 |
-| Protocol | VNC - Virtual Network Computing |
-| **In the Basic tab** |  |
-| Server | 127.0.0.1:5900 |
-| Password | secret |
-| Color depth | True color (24 bit) # This was the only one that worked for us |
-| Quality | Poor (fastest) |
+  |------|-----------------------------|
+  | Name | seleniumstandalone_chrome_1 |
+  | Protocol | VNC - Virtual Network Computing |
+  | **In the Basic tab** |  |
+  | Server | 127.0.0.1:5900 |
+  | Password | secret |
+  | Color depth | True color (24 bit) # This was the only one that worked for us |
+  | Quality | Poor (fastest) |
   
   | Key  | Value                       |
-|------|-----------------------------|
-| Name | seleniumstandalone_chrome_2 |
-| Protocol | VNC - Virtual Network Computing |
-| **In the Basic tab** |  |
-| Server | 127.0.0.1:5901 |
-| Password | secret |
-| Color depth | True color (24 bit) # This was the only one that worked for us |
-| Quality | Poor (fastest) |
+  |------|-----------------------------|
+  | Name | seleniumstandalone_chrome_2 |
+  | Protocol | VNC - Virtual Network Computing |
+  | **In the Basic tab** |  |
+  | Server | 127.0.0.1:5901 |
+  | Password | secret |
+  | Color depth | True color (24 bit) # This was the only one that worked for us |
+  | Quality | Poor (fastest) |
 
 Further details on the [SeleniumHQ github](https://github.com/SeleniumHQ/docker-selenium#debugging)
 
