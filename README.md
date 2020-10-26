@@ -6,7 +6,7 @@
   <br/>
 <br/>
 <h2>purpleteam Stage Two containers</h2><br/>
-  Currently in heavy development
+  
 <br/><br/>
 
 
@@ -14,6 +14,8 @@
 </div>
 
 These containers are started dynamically based on Build User config (Job) input supplied to the purpleteam CLI, specifically the number of `testSession`s you define.
+
+The following configurations are relevant if you are intending on running the purpleteam back-end in the `local` environment. In the `cloud` this is all done for you.
 
 # Define the environment variables
 
