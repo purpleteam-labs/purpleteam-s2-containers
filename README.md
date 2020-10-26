@@ -13,7 +13,34 @@
 <br/><br/><br/>
 </div>
 
-These containers are started dynamically based on Build User config (Job) input, specifically the number of `testSession`s.
+These containers are started dynamically based on Build User config (Job) input supplied to the purpleteam CLI, specifically the number of `testSession`s you define.
+
+# Define the environment variables
+
+## app-slave (Zap)
+
+We use a .env file directly in the app-slave directory for testing.
+
+**`ZAP_API_KEY`**
+
+Make sure you have assigned a value to the `ZAP_API_KEY` environment variable. 
+
+The `ZAP_API_KEY` can be what ever you chose, just make sure that as well as defining it for app-slave, you also add it to the app-scanner project configuration. The app-scanner project requires the Zap API Key to be configured in order to authenticate to Zap running in the Stage Two container. For the app-scanner project, this needs to be set in the following:  
+`{ "slave": { "apiKey": <zap-api-key-here> } }`
+
+**`HOST_ZAP_LOG4J_PROPERTIES_PATH`** and **`ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET`**
+
+If/when you need Zap debug logs you will also need to add the environment variables for the LOG4J debug configuration.
+
+**.env** file
+
+If you choose to use a .env file, adding all of these environment variables would look similar to the following:
+
+```env
+ZAP_API_KEY=<zap-api-key-here>
+HOST_ZAP_LOG4J_PROPERTIES_PATH=<absolute-path-to/purpleteam-s2-containers/app-slave/log4j.properties>
+ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET=/home/zap/.ZAP/log4j.properties
+```
 
 # Debugging
 
@@ -21,10 +48,11 @@ These containers are started dynamically based on Build User config (Job) input,
 
 ### Debug logging
 
+Providing you have established the environment variables discussed above:
 
+In order to turn on debug logging for the app-slave (Zap) containers that run in the `local` environment, uncomment the `volumes` array and the element containing `source` key with environment variable `HOST_ZAP_LOG4J_PROPERTIES_PATH`.
 
-
-Details [below]() for actually viewing the logs.
+Details [below](#redirecting-and-viewing-container-logs) for actually viewing the logs.
 
 ## selenium-standalone
 
@@ -32,11 +60,11 @@ Details [below]() for actually viewing the logs.
 
 In order to [turn on debug logging](https://github.com/SeleniumHQ/docker-selenium#se_opts-selenium-configuration-options) for the Selenium containers that run in the `local` environment, uncomment the `environment` array and the `SE_OPTS=-debug` element for `chrome` and/or `firefox`.
 
-Details [below]() for actually viewing the logs.
+Details [below](#redirecting-and-viewing-container-logs) for actually viewing the logs.
 
 ### Viewing browser in Selenium container
 
-In order to view the browser inside the Selenium container, there are a few things you will need to do.
+The following outlines what you will need to do in order to view the browser inside any of the Selenium containers run from this project.
 
 #### docker-compose.yml set-up:
 
@@ -45,13 +73,11 @@ In order to view the browser inside the Selenium container, there are a few thin
 
 #### VNC Client set-up:
 
-You will need a VNC client to open a connection to the VNC server within the container. We've had success with using the Remmina Remote Desktop Cleint on Linux Mint. Install the Remmina-plugin-vnc via the Software Manager.
-
-Run your Remmina Remote Desktop Client
-
-Create new entries. If you intend to VNC into a couple of Selenium containers concurrently, you could set each one up like the following:
-
-| Key  | Value                       |
+1. You will need a VNC client to open a connection to the VNC server within the container. We've had success with using the Remmina Remote Desktop Cleint on Linux Mint. Install Remmina-plugin-vnc via the Software Manager
+2. Run your Remmina Remote Desktop Client
+3. Create new entries. If you intend to VNC into a couple of Selenium containers concurrently, you could set each one up like the following:  
+  
+  | Key  | Value                       |
 |------|-----------------------------|
 | Name | seleniumstandalone_chrome_1 |
 | Protocol | VNC - Virtual Network Computing |
@@ -60,8 +86,8 @@ Create new entries. If you intend to VNC into a couple of Selenium containers co
 | Password | secret |
 | Color depth | True color (24 bit) # This was the only one that worked for us |
 | Quality | Poor (fastest) |
-
-| Key  | Value                       |
+  
+  | Key  | Value                       |
 |------|-----------------------------|
 | Name | seleniumstandalone_chrome_2 |
 | Protocol | VNC - Virtual Network Computing |
@@ -75,9 +101,9 @@ Further details on the [SeleniumHQ github](https://github.com/SeleniumHQ/docker-
 
 #### Viewing the browser within Selenium container
 
-Once the Selenium containers are running (Keeping `docker stats` running in a terminal is convenient for this), you can confirm which Selenium container is using which external port with `docker container ls`, as Docker has no idea which ports you have assigned to which of your VNC client entries, so the name of a given VNC client entry may not necessarily match the Selenium container with the same name. For this reason it is a good idea to confirm the port mappings with `docker container ls`.
+Once the Selenium containers are running (Keeping `docker stats` running in a terminal is convenient for viewing this), you can confirm which Selenium container is using which external port with `docker container ls`, as Docker has no idea which ports you have assigned to which of your VNC client entries, so the name of a given VNC client entry may not necessarily match the Selenium container with the same name. For this reason it is a good idea to confirm the port mappings with `docker container ls`.
 
-In order to correlate which Selenium container is being used for which Test Session you may need to review the running app-scanner log. You may also need to make sure that the app-scanner is configured to log level `debug` in order to see some or more of the following log messages:  
+In order to correlate which Selenium container is being used for which Test Session when you have multiple Test Sessions you may need to review the running app-scanner log. You may also need to make sure that the app-scanner is configured to log level `debug` in order to see some or more of the following log messages:  
 
 `[app.parallel] cucCli process with PID "28" has been spawned for test session with Id "lowPrivUser"`
 
@@ -89,9 +115,10 @@ In order to correlate which Selenium container is being used for which Test Sess
 
 In this example we have two Test Sessions configured in our Build User config (Job). One has an `id` of `lowPrivUser` and one has an `id` of `adminUser`. In this example the `lowPrivUser` Test Session has a process with `PID` `28` and the `adminUser` Test Session has a process with `PID` `34`.  
 In the next two log messages after that we see by correlating the PIDs that the `lowPrivUser` Test Session is running a container named `seleniumstandalone_chrome_1` and `adminUser` Test Session is running a container named `seleniumstandalone_chrome_2`.  
-There are no guarantees as to which Test Session will run which of the seleniumstandalone_chrome_[n] containers, so if you need to be sure then use this correlation technique  
+There are no guarantees as to which Test Session will run which of the seleniumstandalone_chrome_[n] containers, so if you need to be sure then use this correlation technique.
 
-To VNC to the Selenium containers, once you have Remmina running, simply double click on one or more of the VNC entries you created above and you should be able to see the browser being interacted with... providing the Cucumber test steps in the app-scanner are actually up to that point.
+To VNC to the Selenium containers, once you have Remmina running, simply double click on one or more of the VNC entries you created above and you should be able to see the browser being interacted with... providing the Cucumber test steps in the app-scanner are actually up to that point.  
+You can of course slow your tests down, pause them, step through them with a debugger. These details are in the purpleteam wiki in the workflow page
 
 ## Redirecting and viewing container logs
 
