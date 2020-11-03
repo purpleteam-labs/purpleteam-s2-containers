@@ -73,9 +73,9 @@ You can interact with Zap (query the Zap UI) while your tests are running. We've
    This could be any port between `8080-8091` inclusive, as defined in the docker-compose.yml.  
    The port that Zap inside the container is listening on will always be 8080
 3. In your browser using FoxyProxy set-up a proxy to localhost:[zap-host-port]  
-   ![FoxyProxyDetails_Zap-min](/uploads/32b06156241706d0637afb19c0f6a211/FoxyProxyDetails_Zap-min.png)
+   ![FoxyProxyDetails_Zap-min](/uploads/32b06156241706d0637afb19c0f6a211/FoxyProxyDetails_Zap-min.png)  
    Optional: set-up the following URL Pattern in FoxyProxy: `zap:8080/*`  
-   ![FoxyProxyURLPattern_Zap-min](/uploads/7446c101571199ca04e979518fd10e38/FoxyProxyURLPattern_Zap-min.png)
+   ![FoxyProxyURLPattern_Zap-min](/uploads/7446c101571199ca04e979518fd10e38/FoxyProxyURLPattern_Zap-min.png)  
    If you use the URL Pattern it will allow you to leave FoxyProxy on, selecting "_Use proxies based on their predefined patterns and priorities_". Failing that you can just select the specific proxy you have created
 4. Browse to `http://zap:8080/`  
    Your requests will be proxied through your host port and responded to via the `zap` process in the container specified by host port in your FoxyProxy configuration
