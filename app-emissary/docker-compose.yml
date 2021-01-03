@@ -45,9 +45,9 @@ services:
        # Same variables found in contOrc IAC variables.tf for cloud environment.
        source: ${HOST_DIR_APP_SCANNER}
        target: ${ZAP_DIR_APP_SCANNER_MOUNT_TARGET}
-    # Uncomment the bind mount to enable debug logs in Zap containers.    
-    # - type: bind
-    #   # Same variables found in contOrc IAC variables.tf for cloud environment.
-    #   source: ${HOST_ZAP_LOG4J_PROPERTIES_PATH}
-    #   target: ${ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET}
+       # Uncomment the bind mount to enable debug logs in Zap containers.
+     - type: bind
+       # Same variables found in contOrc IAC variables.tf for cloud environment.
+       source: ${HOST_ZAP_LOG4J_PROPERTIES_PATH}
+       target: ${ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET}
 
