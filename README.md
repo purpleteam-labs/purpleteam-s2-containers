@@ -5,8 +5,8 @@
   </a>
   <br/>
 <br/>
-<h2>purpleteam Stage Two containers</h2><br/>
-Stage Two containers of <a href="https://purpleteam-labs.com/" title="purpleteam">purpleteam</a>
+<h2>purpleteam stage two containers</h2><br/>
+Stage two containers of <a href="https://purpleteam-labs.com/" title="purpleteam">purpleteam</a>
 <br/><br/>
 
   <a href="https://www.gnu.org/licenses/agpl-3.0" title="license">
