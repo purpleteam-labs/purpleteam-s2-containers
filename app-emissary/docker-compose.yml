@@ -24,7 +24,7 @@ services:
       "-config",
       "api.addrs.addr.regex=true",
       "-config",
-      "api.addrs.addr.name=zap|localhost|127.0.0.1|172.25.0.*|appslave_zap_(100|[1-9][0-9]?)",
+      "api.addrs.addr.name=zap|localhost|127.0.0.1|172.25.0.*|appemissary_zap_(100|[1-9][0-9]?)",
       "-config",
       "api.key=${ZAP_API_KEY}"
     ]

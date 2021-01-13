@@ -23,16 +23,16 @@ Clone this repository.
 
 # Define the environment variables
 
-## app-slave (Zap)
+## app-emissary (Zap)
 
-We use a .env file directly in the app-slave directory for testing.
+We use a .env file directly in the app-emissary directory for testing.
 
 **`ZAP_API_KEY`**
 
 Make sure you have assigned a value to the `ZAP_API_KEY` environment variable. 
 
-The `ZAP_API_KEY` can be what ever you chose, just make sure that as well as defining it for app-slave, you also add it to the app-scanner project configuration. The app-scanner project requires the Zap API Key to be configured in order to authenticate to Zap running in the Stage Two container. For the app-scanner project, this needs to be set in the following:  
-`{ "slave": { "apiKey": <zap-api-key-here> } }`
+The `ZAP_API_KEY` can be what ever you chose, just make sure that as well as defining it for app-emissary, you also add it to the app-scanner project configuration. The app-scanner project requires the Zap API Key to be configured in order to authenticate to Zap running in the Stage Two container. For the app-scanner project, this needs to be set in the following:  
+`{ "emissary": { "apiKey": <zap-api-key-here> } }`
 
 **`HOST_ZAP_LOG4J_PROPERTIES_PATH`** and **`ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET`**
 
@@ -44,19 +44,19 @@ If you choose to use a .env file, adding all of these environment variables woul
 
 ```env
 ZAP_API_KEY=<zap-api-key-here>
-HOST_ZAP_LOG4J_PROPERTIES_PATH=<absolute-path-to/purpleteam-s2-containers/app-slave/log4j.properties>
+HOST_ZAP_LOG4J_PROPERTIES_PATH=<absolute-path-to/purpleteam-s2-containers/app-emissary/log4j.properties>
 ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET=/home/zap/.ZAP/log4j.properties
 ```
 
 # Debugging
 
-## app-slave (Zap)
+## app-emissary (Zap)
 
 ### Debug logging
 
 Providing you have established the environment variables discussed above:
 
-In order to turn on debug logging for the app-slave (Zap) containers that run in the `local` environment, uncomment the `volumes` array and the element containing `source` key with environment variable `HOST_ZAP_LOG4J_PROPERTIES_PATH`.
+In order to turn on debug logging for the app-emissary (Zap) containers that run in the `local` environment, uncomment the `volumes` array and the element containing `source` key with environment variable `HOST_ZAP_LOG4J_PROPERTIES_PATH`.
 
 Details [below](#redirecting-and-viewing-container-logs) for actually viewing the logs.
 
@@ -64,11 +64,11 @@ Details [below](#redirecting-and-viewing-container-logs) for actually viewing th
 
 You can interact with Zap (query the Zap UI) while your tests are running. We've found this useful in the past to check the state of Zap while debugging the app-scanner.
 
-1. Confirm that the appslave_zap_[n] container is running with:  
+1. Confirm that the appemissary_zap_[n] container is running with:  
    ```shell
    docker stats
    ```
-2. Check which host port the appslave_zap_[n] container is bound to with:  
+2. Check which host port the appemissary_zap_[n] container is bound to with:  
    ```shell
    docker container ls
    ```
