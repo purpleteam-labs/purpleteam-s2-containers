@@ -18,7 +18,7 @@ Stage two containers of <a href="https://purpleteam-labs.com/" title="purpleteam
   <br/><br/>
 </div>
 
-These containers are started dynamically based on Build User config (Job) input supplied to the purpleteam CLI, specifically the number of `testSession`s you define.
+These containers are started dynamically based on Build User config ([_Job_](https://doc.purpleteam-labs.com/definitions.html)) input supplied to the purpleteam CLI, specifically the number of `testSession`s you define.
 
 The following configurations are relevant if you are intending on running the purpleteam back-end in the `local` environment. In the `cloud` this is all done for you.
 
@@ -28,7 +28,7 @@ Clone this repository.
 
 ## app-emissary (Zap)
 
-We use a .env file directly in the app-emissary directory for testing.
+We use a .env file directly in the app-emissary directory for testing. We have created a .env.example file in the `app-emissary/` directory. Rename this to .env and set any values within appropriately.
 
 **`ZAP_API_KEY`**
 
@@ -39,17 +39,7 @@ The `ZAP_API_KEY` can be what ever you chose, just make sure that as well as def
 
 **`HOST_ZAP_LOG4J_PROPERTIES_PATH`** and **`ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET`**
 
-If/when you need Zap debug logs you will also need to add the environment variables for the LOG4J debug configuration.
-
-**.env** file
-
-If you choose to use a .env file, adding all of these environment variables would look similar to the following:
-
-```env
-ZAP_API_KEY=<zap-api-key-here>
-HOST_ZAP_LOG4J_PROPERTIES_PATH=<absolute-path-to/purpleteam-s2-containers/app-emissary/log4j.properties>
-ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET=/home/zap/.ZAP/log4j.properties
-```
+If/when you need Zap debug logs you will also need to make sure the environment variables for the LOG4J debug configuration is added to the .env file.
 
 # Debugging
 
@@ -170,6 +160,7 @@ If you would like to send those logs to a file without viewing them via your ter
 docker logs --follow [container-name] > output.log$(date '+%Y-%m-%d_%T')
 ```
 
+<br>
 
-
+Once you have cloned and configured the environment for the stage two containers, head back to the [local setup](https://doc.purpleteam-labs.com/local/local-setup.html) documentation to continue setting up the other purpleteam components.
 
