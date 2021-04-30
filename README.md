@@ -79,7 +79,7 @@ You can interact with Zap (query the Zap API in your browser) while your tests a
 
 ### Debug logging
 
-In order to [turn on debug logging](https://github.com/SeleniumHQ/docker-selenium#se_opts-selenium-configuration-options) for the Selenium containers that run in the `local` environment, uncomment the `environment` array and the `SE_OPTS=-debug` element for `chrome` and/or `firefox`.
+In order to [turn on debug logging](https://github.com/SeleniumHQ/docker-selenium#se_opts-selenium-configuration-options) for the Selenium containers that run in the `local` environment, edit the selenium-standalone/docker-compose.yml file, uncomment the `environment` array and the `SE_OPTS=-debug` element for `chrome` and/or `firefox`.
 
 Details [below](#redirecting-and-viewing-container-logs) for actually viewing the logs.
 
@@ -90,7 +90,7 @@ The following outlines what you will need to do in order to view the browser ins
 #### docker-compose.yml set-up:
 
 * Swap the container images with the `-debug` images. The `-debug` images may be commented out, so simply commenting out the usual image and uncommenting the image with `-debug` appended to the end should do the trick
-* Make sure you can access the VNC server within the container by uncommenting the `5900` port range. By specifying a range as the external port (Ex: `5900-5901`) you will be able to VNC into more than one container at once, in the example we have allowed for opening two sessions concurrently. If you need to VNC into more than two simply widen the external port range
+* Make sure you can access the VNC server within the container by uncommenting the `5900` port range. By specifying a range as the external port (Ex: `5900-5901`) you will be able to VNC into more than one container at once, in the example we've made in the selenium-standalone/docker-compose.yml file, we have allowed for opening two sessions concurrently. If you need to VNC into more than two simply widen the external port range
 
 #### VNC Client set-up:
 
