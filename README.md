@@ -49,7 +49,12 @@ If/when you need Zap debug logs you will also need to make sure the environment 
 
 Providing you have established the environment variables discussed above:
 
-In order to turn on debug logging for the app-emissary (Zap) containers that run in the `local` environment, uncomment the `volumes` array and the element containing `source` key with environment variable `HOST_ZAP_LOG4J_PROPERTIES_PATH`.
+In order to turn on debug logging for the app-emissary (Zap) containers that run in the `local` environment, uncomment the `volumes` array and the following elements containing:
+
+* `source` key with environment variable `HOST_ZAP_LOG4J_PROPERTIES_PATH`
+* `target` key with environment variable `ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET`
+
+The purpleteam-labs team have a `debug` branch that we rebase on `main` when ever we want to apply these settings (enable debugging).
 
 Details [below](#redirecting-and-viewing-container-logs) for actually viewing the logs.
 
@@ -81,6 +86,8 @@ You can interact with Zap (query the Zap API in your browser) while your tests a
 
 In order to [turn on debug logging](https://github.com/SeleniumHQ/docker-selenium#se_opts-selenium-configuration-options) for the Selenium containers that run in the `local` environment, edit the selenium-standalone/docker-compose.yml file, uncomment the `environment` array and the `SE_OPTS=-debug` element for `chrome` and/or `firefox`.
 
+The purpleteam-labs team use the same `debug` branch mentioned above that we rebase on `main` when ever we want to apply these settings (enable debugging).
+
 Details [below](#redirecting-and-viewing-container-logs) for actually viewing the logs.
 
 ### Viewing browser in Selenium container
@@ -89,12 +96,12 @@ The following outlines what you will need to do in order to view the browser ins
 
 #### docker-compose.yml set-up:
 
-* Swap the container images with the `-debug` images. The `-debug` images may be commented out, so simply commenting out the usual image and uncommenting the image with `-debug` appended to the end should do the trick
-* Make sure you can access the VNC server within the container by uncommenting the `5900` port range. By specifying a range as the external port (Ex: `5900-5901`) you will be able to VNC into more than one container at once, in the example we've made in the selenium-standalone/docker-compose.yml file, we have allowed for opening two sessions concurrently. If you need to VNC into more than two simply widen the external port range
+* Swap the container images with the `-debug` images. The `-debug` images may be commented out, so simply commenting out the usual image and uncommenting the image with `-debug` appended to the end should do the trick. The `debug` branch mentioned above takes care of this
+* Make sure you can access the VNC server within the container by uncommenting the `5900` port range. By specifying a range as the external port (Ex: `5900-5901`) you will be able to VNC into more than one container at once, in the example we've made in the selenium-standalone/docker-compose.yml file, we have allowed for opening two sessions concurrently. If you need to VNC into more than two simply widen the external port range. The `debug` branch also takes care of this
 
 #### VNC Client set-up:
 
-1. You will need a VNC client to open a connection to the VNC server within the container. We've had success with using the Remmina Remote Desktop Cleint on Linux Mint. Install Remmina-plugin-vnc via the Software Manager
+1. You will need a VNC client to open a connection to the VNC server within the container. We've had success with using the Remmina Remote Desktop Cleint on Linux Mint. Install Remmina-plugin-vnc via Synaptic Package Manager or apt
 2. Run your Remmina Remote Desktop Client
 3. Create new entries. If you intend to VNC into a couple of Selenium containers concurrently, you could set each one up like the following:  
    
