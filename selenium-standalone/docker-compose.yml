@@ -1,3 +1,6 @@
+# Waiting to see what happens with docker-compose-ui support in order to move to 3.8
+#   https://github.com/francescou/docker-compose-ui/issues/120
+#   https://github.com/francescou/docker-compose-ui/issues/110
 version: "3.6"
 
 networks:
@@ -15,8 +18,8 @@ services:
   chrome:
     # Use the -debug image instead, along with the 5900 port range if you want to VNC into the container and view the browser.
     # https://github.com/SeleniumHQ/docker-selenium#debugging
-    #image: selenium/standalone-chrome-debug
-    image: selenium/standalone-chrome
+    #image: selenium/standalone-chrome-debug # The tags are different for -debug
+    image: selenium/standalone-chrome:91.0 # Published 27 May 2021
     networks:
       compose_pt-net:
     ports:
@@ -29,8 +32,8 @@ services:
   firefox:
     # Use the -debug image instead, along with the 5900 port range if you want to VNC into the container and view the browser.
     # https://github.com/SeleniumHQ/docker-selenium#debugging
-    #image: selenium/standalone-firefox-debug:3.141.59
-    image: selenium/standalone-firefox:3.141.59
+    #image: selenium/standalone-firefox-debug # The tags are different for -debug
+    image: selenium/standalone-firefox:88.0 # Published 27 May 2021
     networks:
       compose_pt-net:
     ports:
