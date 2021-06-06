@@ -16,9 +16,8 @@ services:
   #  ports:
   #    - "4444:4444"
   chrome:
-    # Use the -debug image instead, along with the 5900 port range if you want to VNC into the container and view the browser.
+    # Use the 5900 port range if you want to VNC into the container and view the browser.
     # https://github.com/SeleniumHQ/docker-selenium#debugging
-    #image: selenium/standalone-chrome-debug # The tags are different for -debug
     image: selenium/standalone-chrome:91.0 # Published 27 May 2021
     networks:
       compose_pt-net:
@@ -26,13 +25,14 @@ services:
       - "4444-4455:4444"
       #- "5900-5901:5900"
     shm_size: 1G
-    # Uncomment the SE_OPTS env var to enable debug logs in Selenium containers.
-    #environment:
-    #  - SE_OPTS=-debug
-  firefox:
-    # Use the -debug image instead, along with the 5900 port range if you want to VNC into the container and view the browser.
+    # Uncomment the SE_OPTS env var to adjust logging verbosity in Selenium containers.
     # https://github.com/SeleniumHQ/docker-selenium#debugging
-    #image: selenium/standalone-firefox-debug # The tags are different for -debug
+    # https://docs.oracle.com/javase/7/docs/api/java/util/logging/Level.html
+    #environment:
+    #  - SE_OPTS=--log-level FINE
+  firefox:
+    # Use the 5900 port range if you want to VNC into the container and view the browser.
+    # https://github.com/SeleniumHQ/docker-selenium#debugging
     image: selenium/standalone-firefox:88.0 # Published 27 May 2021
     networks:
       compose_pt-net:
@@ -40,7 +40,9 @@ services:
       - "4444-4455:4444"
       #- "5900-5901:5900"
     shm_size: 1G
-    # Uncomment the SE_OPTS env var to enable debug logs in Selenium containers.
+    # Uncomment the SE_OPTS env var to adjust logging verbosity in Selenium containers.
+    # https://github.com/SeleniumHQ/docker-selenium#debugging
+    # https://docs.oracle.com/javase/7/docs/api/java/util/logging/Level.html
     #environment:
-    #  - SE_OPTS=-debug
+    #  - SE_OPTS=--log-level FINE
 
