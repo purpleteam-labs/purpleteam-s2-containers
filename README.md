@@ -15,7 +15,7 @@ Stage two containers of <a href="https://purpleteam-labs.com/" title="purpleteam
   <br/><br/>
 </div>
 
-These containers are started dynamically based on Build User config ([_Job_](https://doc.purpleteam-labs.com/definitions.html)) input supplied to the purpleteam CLI, specifically the number of `testSession`s you define.
+These containers are started dynamically based on Build User config ([_Job_](https://purpleteam-labs.com/doc/definitions/)) input supplied to the purpleteam CLI, specifically the number of `testSession`s you define.
 
 The following configurations are relevant if you are intending on running the purpleteam back-end in the `local` environment. In the `cloud` this is all done for you.
 
@@ -163,5 +163,5 @@ docker logs --follow [container-name] > output.log$(date '+%Y-%m-%d_%T')
 
 <br>
 
-Once you have cloned and configured the environment for the stage two containers, head back to the [local setup](https://doc.purpleteam-labs.com/local/local-setup.html) documentation to continue setting up the other purpleteam components.
+Once you have cloned and configured the environment for the stage two containers, head back to the [local setup](https://purpleteam-labs.com/doc/local/set-up/) documentation to continue setting up the other purpleteam components.
 
