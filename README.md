@@ -15,7 +15,7 @@ Stage two containers of <a href="https://purpleteam-labs.com/" title="purpleteam
   <br/><br/>
 </div>
 
-These containers are started dynamically based on Build User config ([_Job_](https://purpleteam-labs.com/doc/definitions/)) input supplied to the purpleteam CLI, specifically the number of `testSession`s you define.
+These containers are started dynamically based on ([_Job_](https://purpleteam-labs.com/doc/definitions/)) input supplied to the purpleteam CLI, specifically the number of `testSession`s you define.
 
 The following configurations are relevant if you are intending on running the purpleteam back-end in the `local` environment. In the `cloud` this is all done for you.
 
@@ -135,7 +135,7 @@ In order to correlate which Selenium container is being used for which Test Sess
 
 `[pid-34,world] seleniumContainerName is: seleniumstandalone_chrome_2`
 
-In this example we have two Test Sessions configured in our [Build User config (Job)](https://github.com/purpleteam-labs/purpleteam/blob/d08581dadf29ebd0becd1623a408335f2e72e15e/testResources/jobs/job_0.1.0-alpha.1_local). One has an `id` of `lowPrivUser` and one has an `id` of `adminUser`. In this example the `lowPrivUser` Test Session has a process with `PID` `28` and the `adminUser` Test Session has a process with `PID` `34`.  
+In this example we have two Test Sessions configured in our _[Job](https://github.com/purpleteam-labs/purpleteam/blob/d08581dadf29ebd0becd1623a408335f2e72e15e/testResources/jobs/job_0.1.0-alpha.1_local)_. One has an `id` of `lowPrivUser` and one has an `id` of `adminUser`. In this example the `lowPrivUser` Test Session has a process with `PID` `28` and the `adminUser` Test Session has a process with `PID` `34`.  
 In the next two log messages after that we see by correlating the PIDs that the `lowPrivUser` Test Session is running a container named `seleniumstandalone_chrome_1` and `adminUser` Test Session is running a container named `seleniumstandalone_chrome_2`.  
 There are no guarantees as to which Test Session will run which of the seleniumstandalone_chrome_[n] containers, so if you need to be sure then use this correlation technique.
 
