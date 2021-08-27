@@ -6,7 +6,7 @@
   <br/>
 <br/>
 <h2>purpleteam stage two containers</h2><br/>
-Stage two containers of <a href="https://purpleteam-labs.com/" title="purpleteam">purpleteam</a>
+Stage two containers of <a href="https://purpleteam-labs.com/" title="purpleteam"><em>PurpleTeam</em></a>
 <br/><br/>
 
   <a href="https://www.gnu.org/licenses/agpl-3.0" title="license">
@@ -15,9 +15,9 @@ Stage two containers of <a href="https://purpleteam-labs.com/" title="purpleteam
   <br/><br/>
 </div>
 
-These containers are started dynamically based on ([_Job_](https://purpleteam-labs.com/doc/definitions/)) input supplied to the purpleteam CLI, specifically the number of `testSession`s you define.
+These containers are started dynamically based on ([_Job_](https://purpleteam-labs.com/doc/definitions/)) input supplied to the _PurpleTeam_ CLI, specifically the number of `appScanner` resource objects you define.
 
-The following configurations are relevant if you are intending on running the purpleteam back-end in the `local` environment. In the `cloud` this is all done for you.
+The following configurations are relevant if you are intending on running the _PurpleTeam_ back-end in the `local` environment. In the `cloud` this is all done for you.
 
 Clone this repository.
 
@@ -51,7 +51,7 @@ In order to turn on debug logging for the app-emissary (Zap) containers that run
 * `source` key with environment variable `HOST_ZAP_LOG4J_PROPERTIES_PATH`
 * `target` key with environment variable `ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET`
 
-The purpleteam-labs team have a `debug` branch that we rebase on `main` when ever we want to apply these settings (enable debugging).
+The PurpleTeam-Labs team have a `debug` branch that we rebase on `main` when ever we want to apply these settings (enable debugging).
 
 Details [below](#redirecting-and-viewing-container-logs) for actually viewing the logs.
 
@@ -83,7 +83,7 @@ You can interact with Zap (query the Zap API in your browser) while your tests a
 
 In order to [turn on debug logging](https://github.com/SeleniumHQ/docker-selenium#troubleshooting) for the Selenium containers that run in the `local` environment, edit the selenium-standalone/docker-compose.yml file, uncomment the `environment` array and the `SE_OPTS=--log-level FINE` element for `chrome` and/or `firefox`.
 
-The purpleteam-labs team use the same `debug` branch mentioned above that we rebase on `main` when ever we want to apply these settings (enable debugging).
+The PurpleTeam-Labs team use the same `debug` branch mentioned above that we rebase on `main` when ever we want to apply these settings (enable debugging).
 
 Details [below](#redirecting-and-viewing-container-logs) for actually viewing the logs.
 
@@ -125,22 +125,22 @@ Make sure you can access the VNC server within the container by uncommenting the
 
 Once the Selenium containers are running (Keeping `docker stats` running in a terminal is convenient for viewing this), you can confirm which Selenium container is using which external port with `docker container ls`, as Docker has no idea which ports you have assigned to which of your VNC client entries, so the name of a given VNC client entry may not necessarily match the Selenium container with the same name. For this reason it is a good idea to confirm the port mappings with `docker container ls`.
 
-In order to correlate which Selenium container is being used for which Test Session when you have multiple Test Sessions you may need to review the running app-scanner log. You may also need to make sure that the app-scanner is configured to log level `debug` in order to see some or more of the following log messages:  
+In order to correlate which Selenium container is being used for which `appScanner` _Test Session_ when you have multiple `appScanner` _Test Sessions_ you may need to review the running app-scanner log. You may also need to make sure that the app-scanner is configured to log level `debug` in order to see some or more of the following log messages:  
 
-`[app.parallel] cucCli process with PID "28" has been spawned for test session with Id "lowPrivUser"`
+`[app.parallel] cucCli process with PID "28" has been spawned for Test Session with Id "lowPrivUser"`
 
-`[app.parallel] cucCli process with PID "34" has been spawned for test session with Id "adminUser"`
+`[app.parallel] cucCli process with PID "34" has been spawned for Test Session with Id "adminUser"`
 
 `[pid-28,world] seleniumContainerName is: seleniumstandalone_chrome_1`
 
 `[pid-34,world] seleniumContainerName is: seleniumstandalone_chrome_2`
 
-In this example we have two Test Sessions configured in our _[Job](https://github.com/purpleteam-labs/purpleteam/blob/d08581dadf29ebd0becd1623a408335f2e72e15e/testResources/jobs/job_0.1.0-alpha.1_local)_. One has an `id` of `lowPrivUser` and one has an `id` of `adminUser`. In this example the `lowPrivUser` Test Session has a process with `PID` `28` and the `adminUser` Test Session has a process with `PID` `34`.  
-In the next two log messages after that we see by correlating the PIDs that the `lowPrivUser` Test Session is running a container named `seleniumstandalone_chrome_1` and `adminUser` Test Session is running a container named `seleniumstandalone_chrome_2`.  
-There are no guarantees as to which Test Session will run which of the seleniumstandalone_chrome_[n] containers, so if you need to be sure then use this correlation technique.
+In this example we have two `appScanner` _Test Sessions_ configured in our _[Job](https://github.com/purpleteam-labs/purpleteam/blob/d08581dadf29ebd0becd1623a408335f2e72e15e/testResources/jobs/job_0.1.0-alpha.1_local)_. One has an `id` of `lowPrivUser` and one has an `id` of `adminUser`. In this example the `lowPrivUser` _Test Session_ has a process with `PID` `28` and the `adminUser` _Test Session_ has a process with `PID` `34`.  
+In the next two log messages after that we see by correlating the `PID`s that the `lowPrivUser` _Test Session_ is running a container named `seleniumstandalone_chrome_1` and `adminUser` _Test Session_ is running a container named `seleniumstandalone_chrome_2`.  
+There are no guarantees as to which `appScanner` _Test Session_ will run which of the seleniumstandalone_chrome_[n] containers, so if you need to be sure then use this correlation technique.
 
 To VNC to the Selenium containers, once you have Remmina running, simply double click on one or more of the VNC entries you created above and you should be able to see the browser being interacted with... providing the Cucumber test steps in the app-scanner are actually up to that point.  
-You can of course slow your tests down, pause them, step through them with a debugger. These details are in the purpleteam [documentation](https://purpleteam-labs.com/doc/local/workflow/#app-scanner-and-sub-processes).
+You can of course slow your tests down, pause them, step through them with a debugger. These details are in the _PurpleTeam_ [documentation](https://purpleteam-labs.com/doc/local/workflow/#app-scanner-and-sub-processes).
 
 ## Redirecting and viewing container logs
 
@@ -163,5 +163,5 @@ docker logs --follow [container-name] > output.log$(date '+%Y-%m-%d_%T')
 
 <br>
 
-Once you have cloned and configured the environment for the stage two containers, head back to the [local setup](https://purpleteam-labs.com/doc/local/set-up/) documentation to continue setting up the other purpleteam components.
+Once you have cloned and configured the environment for the stage two containers, head back to the [local setup](https://purpleteam-labs.com/doc/local/set-up/) documentation to continue setting up the other _PurpleTeam_ components.
 
