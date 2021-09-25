@@ -97,7 +97,7 @@ Make sure you can access the VNC server within the container by uncommenting the
 
 #### VNC Client set-up:
 
-1. You will need a VNC client to open a connection to the VNC server within the container. We've had success with using the Remmina Remote Desktop Cleint on Linux Mint. Install Remmina-plugin-vnc via Synaptic Package Manager or apt
+1. You will need a VNC client to open a connection to the VNC server within the container. We've had success with using the Remmina Remote Desktop Client on Linux Mint. Install Remmina-plugin-vnc via Synaptic Package Manager or apt
 2. Run your Remmina Remote Desktop Client
 3. Create new entries. If you intend to VNC into a couple of Selenium containers concurrently, you could set each one up like the following:  
    
