@@ -25,16 +25,24 @@ Clone this repository.
 
 ## app-emissary (Zap)
 
-We use a .env file directly in the app-emissary directory for testing. We have created a .env.example file in the `app-emissary/` directory. Rename this to .env and set any values within appropriately.
+We use a .env file directly in the app-emissary directory for testing. We have created a .env.example file in the app-emissary/ directory. Rename this to .env and set any values within appropriately.
 
-**`ZAP_API_KEY`**
+### `ZAP_API_KEY`
 
 Make sure you have assigned a value to the `ZAP_API_KEY` environment variable. 
 
-The `ZAP_API_KEY` can be what ever you chose, just make sure that as well as defining it for app-emissary, you also add it to the app-scanner project configuration. The app-scanner project requires the Zap API Key to be configured in order to authenticate to Zap running in the Stage Two container. For the app-scanner project, this needs to be set in the following:  
+The `ZAP_API_KEY` can be what ever you chose, just make sure that as well as defining it for the app-emissary, you also add it to the app-scanner project configuration. The app-scanner project requires the Zap API Key to be configured in order to authenticate to Zap running in the Stage Two container. For the app-scanner project, this needs to be set in the following way in the configuration:  
 `{ "emissary": { "apiKey": <zap-api-key-here> } }`
 
-**`HOST_ZAP_LOG4J_PROPERTIES_PATH`** and **`ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET`**
+### `HOST_DIR_APP_SCANNER`
+
+This environment variable along with the directory it refers to should have been set-up for the App _Tester_ as part of the [_orchestrator_ set-up](https://purpleteam-labs.com/doc/local/set-up/#orchestrator). Set this environment variable to the same value. This is the directory that the App _Tester_ puts ephemeral files for the app-emissary to consume.
+
+### `ZAP_DIR_APP_SCANNER_MOUNT_TARGET`
+
+This environment variable refers to the target directory (from the above host directory) mounted into the app-emissary container
+
+### `HOST_ZAP_LOG4J_PROPERTIES_PATH` and `ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET`
 
 If/when you need Zap debug logs you will also need to make sure the environment variables for the LOG4J debug configuration is added to the .env file.
 
