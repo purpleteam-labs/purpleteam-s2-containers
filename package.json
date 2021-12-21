@@ -45,10 +45,13 @@
     "zap"
   ],
   "author": "Kim Carter",
-  "license": "AGPL-3.0-only",
+  "license": "BSL",
   "bugs": {
     "url": "https://github.com/purpleteam-labs/purpleteam/issues"
   },
   "homepage": "https://purpleteam-labs.com",
-  "files": []
+  "files": [
+    "LEGALNOTICE.md",
+    "licenses"
+  ]
 }

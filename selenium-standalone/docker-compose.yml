@@ -1,3 +1,12 @@
+# Copyright (C) 2017-2022 BinaryMist Limited. All rights reserved.
+
+# Use of this software is governed by the Business Source License
+# included in the file /licenses/bsl.md
+
+# As of the Change Date specified in that file, in accordance with
+# the Business Source License, use of this software will be governed
+# by the Apache License, Version 2.0
+
 # Waiting to see what happens with docker-compose-ui support in order to move to 3.8
 #   https://github.com/francescou/docker-compose-ui/issues/120
 #   https://github.com/francescou/docker-compose-ui/issues/110
