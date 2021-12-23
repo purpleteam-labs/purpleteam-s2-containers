@@ -19,7 +19,7 @@ networks:
 
 services:
   zap:
-    image: owasp/zap2docker-stable:2.10.0
+    image: owasp/zap2docker-stable:s2021-12-16 #2.11.1
     networks:
       compose_pt-net:
     # Soft limit of 12 test sessions.
