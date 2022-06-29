@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selenium-standalone-deployment
+  labels:
+    container: selenium-standalone
+  replicas: 1
+  selector:
+    matchLabels:
+      container: selenium-standalone
+  template:
+    metadata:
+      labels:
+        container: selenium-standalone
+    spec:
+      containers:
+        - name: chrome
+          image: selenium/standalone-chrome:96.0
+
+        - name: firefox
+          image: selenium/standalone-firefox:95.0
+
+
+

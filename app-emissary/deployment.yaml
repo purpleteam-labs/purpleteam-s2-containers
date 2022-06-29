@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-emissary-deployment
+  labels:
+    container: app-emissary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      container: app-emissary
+  template:
+    metadata:
+      labels:
+        container: app-emissary
+    spec:
+      containers:
+        - name: app-emissary
+          image: owasp/zap2docker-stable:s2021-12-16
+          command:
+            [
+              "zap.sh",
+              "-daemon",
+              "-port",
+              "8080",
+              "-host",
+              "0.0.0.0",
+              "-config",
+              "api.addrs.addr.regex=true",
+              "-config",
+              "api.addrs.addr.name=zap|localhost|127.0.0.1|172.25.0.*|appemissary_zap_(100|[1-9][0-9]?)",
+              "-config",
+              "api.key=${ZAP_API_KEY}",
+            ]
+          ports:
+            - containerPort: 80
+
