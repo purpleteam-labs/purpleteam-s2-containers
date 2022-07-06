@@ -34,8 +34,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    io.kompose.service: chrome
-  name: chrome-service
+    container: selenium-standalone
+  name: selenium-standalone-service
 spec:
   ports:
     - name: "4444"
@@ -75,6 +75,4 @@ spec:
       port: 4455
       targetPort: 4444
   selector:
-    io.kompose.service: chrome
-status:
-  loadBalancer: {}
+    container: selenium-standalone
