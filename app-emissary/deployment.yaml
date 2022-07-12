@@ -5,7 +5,7 @@ metadata:
   labels:
     container: app-emissary
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
       container: app-emissary
