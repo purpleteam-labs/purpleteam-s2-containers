@@ -17,9 +17,6 @@ spec:
       containers:
         - name: chrome
           image: selenium/standalone-chrome:96.0
-
-        - name: firefox
-          image: selenium/standalone-firefox:95.0
           volumeMounts:
             - mountPath: /dev/shm
               name: dshm
@@ -47,9 +44,6 @@ spec:
         container: selenium-standalone
     spec:
       containers:
-        - name: chrome
-          image: selenium/standalone-chrome:96.0
-
         - name: firefox
           image: selenium/standalone-firefox:95.0
           volumeMounts:
