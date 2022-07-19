@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selenium-standalone-chrome
+  labels:
+    container: selenium-standalone
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      container: selenium-standalone
+  template:
+    metadata:
+      labels:
+        container: selenium-standalone
+    spec:
+      containers:
+        - name: chrome
+          image: selenium/standalone-chrome:96.0
+          volumeMounts:
+            - mountPath: /dev/shm
+              name: dshm
+      volumes:
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selenium-standalone-firefox
+  labels:
+    container: selenium-standalone
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      container: selenium-standalone
+  template:
+    metadata:
+      labels:
+        container: selenium-standalone
+    spec:
+      containers:
+        - name: firefox
+          image: selenium/standalone-firefox:95.0
+          volumeMounts:
+            - mountPath: /dev/shm
+              name: dshm
+      volumes:
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    container: selenium-standalone
+  name: selenium-standalone-service
+spec:
+  type: NodePort
+  ports:
+    - name: "4444"
+      port: 4444
+      nodePort: 30001
+      targetPort: 4444
+  selector:
+    container: selenium-standalone

@@ -24,30 +24,30 @@ services:
       compose_pt-net:
     # Soft limit of 12 test sessions.
     ports:
-    - "8080-8091:8080"
+      - "8080-8091:8080"
     # Todo: KC: create new api key on every test run.
-    command: [
-      "zap.sh",
-      "-daemon",
-      "-port",
-      "8080",
-      "-host",
-      "0.0.0.0",
-      "-config",
-      "api.addrs.addr.regex=true",
-      "-config",
-      "api.addrs.addr.name=zap|localhost|127.0.0.1|172.25.0.*|appemissary_zap_(100|[1-9][0-9]?)",
-      "-config",
-      "api.key=${ZAP_API_KEY}"
-    ]
+    command:
+      [
+        "zap.sh",
+        "-daemon",
+        "-port",
+        "8080",
+        "-host",
+        "0.0.0.0",
+        "-config",
+        "api.addrs.addr.regex=true",
+        "-config",
+        "api.addrs.addr.name=zap|localhost|127.0.0.1|172.25.0.*|appemissary_zap_(100|[1-9][0-9]?)",
+        "-config",
+        "api.key=${ZAP_API_KEY}",
+      ]
     volumes:
-     - type: bind
-       # Same variables found in contOrc IAC variables.tf for cloud environment.
-       source: ${HOST_DIR_APP_SCANNER}
-       target: ${ZAP_DIR_APP_SCANNER_MOUNT_TARGET}
-    # Uncomment the bind mount to enable debug logs in Zap containers.    
+      - type: bind
+        # Same variables found in contOrc IAC variables.tf for cloud environment.
+        source: ${HOST_DIR_APP_SCANNER}
+        target: ${ZAP_DIR_APP_SCANNER_MOUNT_TARGET}
+    # Uncomment the bind mount to enable debug logs in Zap containers.
     # - type: bind
     #   # Same variables found in contOrc IAC variables.tf for cloud environment.
     #   source: ${HOST_ZAP_LOG4J_PROPERTIES_PATH}
     #   target: ${ZAP_LOG4J_PROPERTIES_PATH_MOUNT_TARGET}
-
