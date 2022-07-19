@@ -41,42 +41,11 @@ metadata:
   labels:
     container: app-emissary
 spec:
+  type: NodePort
   ports:
     - name: "8080"
+      nodePort: 30000
       port: 8080
-      targetPort: 8080
-    - name: "8081"
-      port: 8081
-      targetPort: 8080
-    - name: "8082"
-      port: 8082
-      targetPort: 8080
-    - name: "8083"
-      port: 8083
-      targetPort: 8080
-    - name: "8084"
-      port: 8084
-      targetPort: 8080
-    - name: "8085"
-      port: 8085
-      targetPort: 8080
-    - name: "8086"
-      port: 8086
-      targetPort: 8080
-    - name: "8087"
-      port: 8087
-      targetPort: 8080
-    - name: "8088"
-      port: 8088
-      targetPort: 8080
-    - name: "8089"
-      port: 8089
-      targetPort: 8080
-    - name: "8090"
-      port: 8090
-      targetPort: 8080
-    - name: "8091"
-      port: 8091
       targetPort: 8080
   selector:
     container: app-emissary

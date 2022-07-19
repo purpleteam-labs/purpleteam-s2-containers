@@ -63,42 +63,11 @@ metadata:
     container: selenium-standalone
   name: selenium-standalone-service
 spec:
+  type: NodePort
   ports:
     - name: "4444"
       port: 4444
-      targetPort: 4444
-    - name: "4445"
-      port: 4445
-      targetPort: 4444
-    - name: "4446"
-      port: 4446
-      targetPort: 4444
-    - name: "4447"
-      port: 4447
-      targetPort: 4444
-    - name: "4448"
-      port: 4448
-      targetPort: 4444
-    - name: "4449"
-      port: 4449
-      targetPort: 4444
-    - name: "4450"
-      port: 4450
-      targetPort: 4444
-    - name: "4451"
-      port: 4451
-      targetPort: 4444
-    - name: "4452"
-      port: 4452
-      targetPort: 4444
-    - name: "4453"
-      port: 4453
-      targetPort: 4444
-    - name: "4454"
-      port: 4454
-      targetPort: 4444
-    - name: "4455"
-      port: 4455
+      nodePort: 30001
       targetPort: 4444
   selector:
     container: selenium-standalone
