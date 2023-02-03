@@ -10,7 +10,7 @@
 # Waiting to see what happens with docker-compose-ui support in order to move to 3.8
 #   https://github.com/francescou/docker-compose-ui/issues/120
 #   https://github.com/francescou/docker-compose-ui/issues/110
-version: "3.6"
+version: "3.8"
 
 networks:
   compose_pt-net:
